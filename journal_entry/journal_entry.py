@@ -29,11 +29,7 @@ class JournalEntry(AccountsController):
 		self.validate_entries_for_advance()
 		self.validate_multi_currency()
 		self.set_amounts_in_company_currency()
-
-		# Do not validate while importing via data import
-		if not frappe.flags.in_import:
-			self.validate_total_debit_and_credit()
-
+		self.validate_total_debit_and_credit()
 		self.validate_against_jv()
 		self.validate_reference_doc()
 		self.set_against_account()
@@ -1051,4 +1047,4 @@ def make_reverse_journal_entry(source_name, target_doc=None):
 		},
 	}, target_doc)
 
-	return doclist
+	return doclist 
